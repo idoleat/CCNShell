@@ -148,7 +148,7 @@ int main(int argc, char **argv)
                 int status;
                 waitpid(pid, &status, 0);
             } else {
-                execve(strcat(path, line), args, envp);
+                execve(strncat(path, line, 127 - 9), args, envp);
                 fprintf(stderr, "|| Failed to execute '%s': %s ||\n", line,
                         strerror(errno));
                 exit(EXIT_FAILURE);  // What is the difference with _exit()?
